@@ -26,14 +26,15 @@ class LoginController {
 
                 // Vai transformar o código de base64 em array associativo.                
 
-                $body = json_decode(base64_decode(str_replace("Bearer", "", $_SERVER["HTTP_AUTHORIZATION"])), true);
+                $token = str_replace("Bearer", "", $_SERVER["HTTP_AUTHORIZATION"]);
+                $body = json_decode(base64_decode($token), true);
 
                 foreach ($this->users as $key => $val) {
                     if ($key == $body["login"] && $val == $body["senha"]) {
                         http_response_code(200);
                         echo json_encode([
                             "message" => "User logged",
-                            "access_token" => $this->tokenService->generateToken($body)
+                            "access_token" => $this->tokenService->generateToken($token)
                         ]);
                         exit;
                     }

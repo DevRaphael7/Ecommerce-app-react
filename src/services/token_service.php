@@ -31,16 +31,20 @@ class TokenService {
         return true;
     }
 
-    public function generateToken(array $body) {
+    public function generateToken(string $token) {
+
         $datetime = new DateTime();
 
         $current_time = $datetime->format('m/d/Y g:i A');
 
-        return base64_encode(json_encode([
-            "login" => $body["login"],
-            "senha" => $body["senha"],
-            "DATE" => explode(" ", $current_time)[0]
-        ]));
+        $hash_value = hash_hmac(
+            "sha256", 
+            $token,
+            $_ENV["SECRET_KEY"],
+            false
+        );
+
+        return base64_encode($hash_value);
     }
 }
 ?>
