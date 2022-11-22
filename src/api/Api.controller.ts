@@ -28,7 +28,7 @@ export abstract class ApiController {
                     headers: header 
                 }
             ).then(response => {
-                resolve(response.data)
+                resolve(response)
             }).catch( (error) => {
                 reject(error.response)
             })

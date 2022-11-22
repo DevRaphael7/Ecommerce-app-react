@@ -12,12 +12,14 @@
     visibility: visible;
     opacity: 1;
     pointer-events: auto;
+    border-radius: 1.5rem;
 }
 
 .modal-window.show .alert {
     width: 400px;
     position: absolute;
     z-index: 1001;
+    border-radius: 10px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);

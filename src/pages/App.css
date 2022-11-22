@@ -10,10 +10,20 @@
   justify-content: center;
 }
 
+.justify-spacer {
+  justify-content: space-between;
+}
+
 .align-start{
   align-items: flex-start;
 }
 
 .align-center{
   align-items: center;
+}
+
+.icon-alert {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
 }

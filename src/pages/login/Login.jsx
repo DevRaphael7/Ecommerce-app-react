@@ -13,7 +13,8 @@ export const LoginPage = () => {
         senha: '',
         nome: '',
         showModal: false,
-        responseMessage: ''
+        responseMessage: '',
+        iconAlert: ''
     });
 
     const submitLogin = (e) => {
@@ -24,16 +25,19 @@ export const LoginPage = () => {
         }
 
         service.loginRequest({
-            nome: uiInterface.nome,
+            login: uiInterface.nome,
             senha: uiInterface.senha
         }).then(response => {
-            console.log(response)
-        }).catch((erro)=> {
-            console.log(erro.data.message)
             setUiInterface({
-                nome: uiInterface.nome,
-                senha: uiInterface.senha,
-                showPassword: uiInterface.showPassword,
+                ...uiInterface,
+                iconAlert: require('../../assets/check.png'),
+                showModal: true,
+                responseMessage: response.data.message
+            })
+        }).catch((erro)=> {
+            setUiInterface({
+                ...uiInterface,
+                iconAlert: require('../../assets/attention.png'),
                 showModal: true,
                 responseMessage: erro.data.message
             })
@@ -51,9 +55,8 @@ export const LoginPage = () => {
                     type="text" 
                     placeholder='Seu nome' 
                     onChange={(e) => setUiInterface({
-                        nome: e.target.value,
-                        senha: uiInterface.senha,
-                        showPassword: uiInterface.showPassword 
+                        ...uiInterface,
+                        nome: e.target.value
                     })}
                     value={uiInterface.nome}
                 /> 
@@ -64,9 +67,8 @@ export const LoginPage = () => {
                     type={ uiInterface.showPassword ? 'password' : 'text' }
                     placeholder='Sua senha' 
                     onChange={(e) => setUiInterface({
-                        nome: uiInterface.nome,
-                        senha: e.target.value,
-                        showPassword: uiInterface.showPassword
+                        ...uiInterface,
+                        senha: e.target.value
                     })}
                     value={uiInterface.senha}   
                 /> 
@@ -95,7 +97,10 @@ export const LoginPage = () => {
                 showModal: false
             })}
         >
-            <p>{ uiInterface.responseMessage }</p>
+            <div className='flex justify-spacer align-center'>
+                <p>{ uiInterface.responseMessage }</p>
+                <img src={ uiInterface.iconAlert } className="icon-alert"/>
+            </div>
         </ModalComponent> : null }
         
     </div>
