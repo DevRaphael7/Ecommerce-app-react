@@ -8,6 +8,19 @@
     transition: all 0.3s;
 }
 
+.header-modal {
+    position: relative;
+    padding: 5px;
+    height: 30px;
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+}
+
+.header-modal button {
+    position: absolute;
+    right: 10px;
+}
+
 .modal-window.show {
     visibility: visible;
     opacity: 1;
@@ -23,8 +36,11 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 2em;
     background: white;
+}
+
+.alert .prop-dev {
+    padding: 2rem;
 }
   
 .modal-overlay {
@@ -40,4 +56,19 @@
 .modal-overlay.show{
     visibility: visible;
     opacity: 1;
+}
+
+.btn-close-modal{
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    font-weight: bold;
+    color: #fff;
+    padding: 0.5rem;
+    border-radius: 5px;
+    background-color: #ff5335;
+}
+
+.btn-close-modal:hover{
+    background-color: #cc422a;
 }

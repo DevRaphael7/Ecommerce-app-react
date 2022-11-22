@@ -1,0 +1,23 @@
+:root{
+    --size-path: 5px;
+    --duration-animation: 1.5s;
+    --size-spin: 20px;
+}
+
+@keyframes spinner {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+}
+
+.loading-spinner {
+    width: var(--size-spin);
+    height: var(--size-spin);
+    border: var(--size-path) solid #f3f3f3; /* Light grey */
+    border-top: var(--size-path) solid #03203d; /* Black */
+    border-radius: 50%;
+    animation: spinner var(--duration-animation) linear infinite;
+}

@@ -1,8 +1,9 @@
 import './Login.css'
 import { LoginService } from './Login.service'
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { IconHeader } from '../components/IconHeader';
 import { ModalComponent } from '../components/ModalComponent/Modal.Component';
+import { SpinnerComponent } from '../components/SpinnerComponent/Spinner';
 
 export const LoginPage = () => {
 
@@ -14,7 +15,8 @@ export const LoginPage = () => {
         nome: '',
         showModal: false,
         responseMessage: '',
-        iconAlert: ''
+        iconAlert: '',
+        spinnerActive: false
     });
 
     const submitLogin = (e) => {
@@ -24,24 +26,37 @@ export const LoginPage = () => {
             return
         }
 
-        service.loginRequest({
-            login: uiInterface.nome,
-            senha: uiInterface.senha
-        }).then(response => {
-            setUiInterface({
-                ...uiInterface,
-                iconAlert: require('../../assets/check.png'),
-                showModal: true,
-                responseMessage: response.data.message
-            })
-        }).catch((erro)=> {
-            setUiInterface({
-                ...uiInterface,
-                iconAlert: require('../../assets/attention.png'),
-                showModal: true,
-                responseMessage: erro.data.message
-            })
+        setUiInterface({
+            ...uiInterface,
+            spinnerActive: true
         })
+
+        setTimeout(() => {
+            service.loginRequest({
+                login: uiInterface.nome,
+                senha: uiInterface.senha
+            }).then(response => {
+                setUiInterface({
+                    ...uiInterface,
+                    iconAlert: require('../../assets/check.png'),
+                    showModal: true,
+                    responseMessage: response.data.message
+                })
+            }).catch((erro)=> {
+                setUiInterface({
+                    ...uiInterface,
+                    iconAlert: require('../../assets/attention.png'),
+                    showModal: true,
+                    responseMessage: erro.data.message
+                })
+            })
+
+            setUiInterface({ 
+                ...uiInterface,
+                spinnerActive: false 
+            })
+
+        }, 4000)
     }
 
     return <div className='container'>
@@ -79,26 +94,33 @@ export const LoginPage = () => {
                     value={uiInterface.showPassword} 
                     onChange={() => {
                         setUiInterface({
+                            ...uiInterface,
                             showPassword: !uiInterface.showPassword
                         })
                     }}   
                 /> Mostrar senha
             </div>
             <button onClick={submitLogin} className='btn-logar'>
-                Login
+                <div className='flex justify-center'>
+                    { uiInterface.spinnerActive ? <SpinnerComponent /> : <p>Login</p> }
+                </div>
             </button>
         </form>
 
         { uiInterface.showModal ?  <ModalComponent
             overlay={() => setUiInterface({
+                ...uiInterface,
                 nome: uiInterface.nome,
                 senha: uiInterface.senha,
                 showPassword: uiInterface.showPassword,
                 showModal: false
             })}
         >
-            <div className='flex justify-spacer align-center'>
-                <p>{ uiInterface.responseMessage }</p>
+            <div className='flex justify-center align-center'>
+                <p style={{
+                    'marginRight': '5px', 
+                    'fontWeight': 'bold'
+                }}>{ uiInterface.responseMessage }</p>
                 <img src={ uiInterface.iconAlert } className="icon-alert"/>
             </div>
         </ModalComponent> : null }

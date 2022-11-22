@@ -30,8 +30,8 @@
     outline: none;
     font-size: 14px;
     font-weight: 100;
-    padding: 8px;
-    height: 18px;
+    padding: 14px;
+    height: 40px;
 }
 
 .form-container input:focus {
@@ -50,6 +50,11 @@
     border-radius: 5px;
 }
 
+.spinner {
+    justify-content: center;
+    display: flex;
+
+}
 .btn-logar:hover{
     background-color: rgb(7, 73, 138);
     cursor: pointer;
