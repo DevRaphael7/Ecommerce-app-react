@@ -2,6 +2,7 @@ import './Login.css'
 import { LoginService } from './Login.service'
 import React, { useState } from 'react';
 import { IconHeader } from '../components/IconHeader';
+import { ModalComponent } from '../components/ModalComponent/Modal.Component';
 
 export const LoginPage = () => {
 
@@ -10,18 +11,32 @@ export const LoginPage = () => {
     const [uiInterface, setUiInterface] = useState({
         showPassword: true,
         senha: '',
-        nome: ''
+        nome: '',
+        showModal: false,
+        responseMessage: ''
     });
 
     const submitLogin = (e) => {
+        e.preventDefault()
+
         if(!uiInterface.nome || !uiInterface.senha) {
-            e.preventDefault()
             return
         }
 
         service.loginRequest({
             nome: uiInterface.nome,
             senha: uiInterface.senha
+        }).then(response => {
+            console.log(response)
+        }).catch((erro)=> {
+            console.log(erro.data.message)
+            setUiInterface({
+                nome: uiInterface.nome,
+                senha: uiInterface.senha,
+                showPassword: uiInterface.showPassword,
+                showModal: true,
+                responseMessage: erro.data.message
+            })
         })
     }
 
@@ -71,5 +86,17 @@ export const LoginPage = () => {
                 Login
             </button>
         </form>
+
+        { uiInterface.showModal ?  <ModalComponent
+            overlay={() => setUiInterface({
+                nome: uiInterface.nome,
+                senha: uiInterface.senha,
+                showPassword: uiInterface.showPassword,
+                showModal: false
+            })}
+        >
+            <p>{ uiInterface.responseMessage }</p>
+        </ModalComponent> : null }
+        
     </div>
 }

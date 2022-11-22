@@ -1,8 +1,13 @@
-export class LoginService {
+import { RejectResponse } from './../../models/ResponseHttp.models';
+import { ApiController } from "../../api/Api.controller";
 
-    constructor() { }
+export class LoginService extends ApiController {
+
+    constructor() { 
+        super()
+    }
 
     loginRequest(form: { nome: string, senha: string }) {
-        console.log(form)
+        return this.post('login', { }, { })
     }
 }
