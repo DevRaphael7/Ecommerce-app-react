@@ -51,7 +51,7 @@ export const LoginPage = () => {
                 })
             })
 
-            setUiInterface({ 
+            setUiInterface({
                 ...uiInterface,
                 spinnerActive: false 
             })
@@ -100,10 +100,8 @@ export const LoginPage = () => {
                     }}   
                 /> Mostrar senha
             </div>
-            <button onClick={submitLogin} className='btn-logar'>
-                <div className='flex justify-center'>
+            <button onClick={submitLogin} className='btn-logar flex justify-center align-center'>
                     { uiInterface.spinnerActive ? <SpinnerComponent /> : <p>Login</p> }
-                </div>
             </button>
         </form>
 
