@@ -1,9 +1,8 @@
 import axios from "axios";
-import { RejectResponse } from "../models/ResponseHttp.models";
 
 export abstract class ApiController {
 
-    private static BASE_URL: string  = "http://localhost/php/login_api/api/"
+    private static BASE_URL: string  = "http://localhost/php/Ecommerce-app-react/api/"
 
     get(endpoint: string) {
         return new Promise((resolve, reject) => {

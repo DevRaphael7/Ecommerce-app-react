@@ -22,6 +22,10 @@
   align-items: center;
 }
 
+.h-full{
+  height: 100%;
+}
+
 .icon-alert {
   width: 30px;
   height: 30px;
