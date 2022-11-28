@@ -1,8 +1,13 @@
+import { useState } from 'react'
+import { SortingService } from '../../services/Sorting.service'
+import { SpinnerComponent } from '../components/SpinnerComponent/Spinner';
 import './HomePage.css'
 
 export const HomePage = () => {
 
-    const produtos = [
+    const [showSpinner, setShowSpinner] = useState(false);
+
+    let [getProdutos, setProdutos] = useState([
         {
             "nome": "Celular",
             "preco": 450.0,
@@ -23,11 +28,11 @@ export const HomePage = () => {
             "preco": 15.99,
             "cover": "https://m.media-amazon.com/images/I/819js3EQwbL.jpg"
         }
-    ]
+    ])
 
-    const getProdutos = () => {
-        return produtos.map(value => (
-            <div class="product-container">
+    const getProdutosHtmlTemplate = () => {
+        return getProdutos.map((value, index) => (
+            <div class="product-container" key={index + 1}>
                 <img src={value.cover} />
                 <div className='info'>
                     <h4>{ value.nome }</h4>
@@ -43,7 +48,19 @@ export const HomePage = () => {
     }
 
     const filtrar = (e) => {
-        console.log(e.target.value)
+        const sortingService = new SortingService("preco");
+        
+        setShowSpinner(true);
+
+        setTimeout(() => {
+            if(e.target.value === "1") {
+                setProdutos(sortingService.sortingBubbleSort(getProdutos, true))
+            } else if (e.target.value === "2") {
+                setProdutos(sortingService.sortingBubbleSort(getProdutos))
+            }
+
+            setShowSpinner(false)
+        }, 2500)
     }
 
     return <section style={{'background': '#f2f2f2'}} className="h-full">
@@ -99,7 +116,7 @@ export const HomePage = () => {
             <hr />
 
             <div className="products-grid">
-                { getProdutos() }
+                { showSpinner ? <SpinnerComponent /> : getProdutosHtmlTemplate() }
             </div>
         </section>
 
