@@ -26,6 +26,10 @@
   height: 100%;
 }
 
+.w-full{
+  width: 100%;
+}
+
 .icon-alert {
   width: 30px;
   height: 30px;
