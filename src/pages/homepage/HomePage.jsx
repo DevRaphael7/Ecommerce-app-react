@@ -27,6 +27,21 @@ export const HomePage = () => {
             "nome": "1984 - George Orwell",
             "preco": 15.99,
             "cover": "https://m.media-amazon.com/images/I/819js3EQwbL.jpg"
+        },
+        {
+            "nome": "DualSense - PS5",
+            "preco": 300.50,
+            "cover": "https://gmedia.playstation.com/is/image/SIEPDC/dualsense-thumbnail-ps5-01-en-17jul20?$native$"
+        },
+        {
+            "nome": "PS5",
+            "preco": 5000.99,
+            "cover": "https://files.tecnoblog.net/wp-content/uploads/2020/11/playstation_5_produto-700x700.png"
+        },
+        {
+            "nome": "Mouse Gamer RGB",
+            "preco": 120.99,
+            "cover": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/p/g/pgm-p301-rgb4.jpg"
         }
     ])
 
@@ -63,45 +78,8 @@ export const HomePage = () => {
         }, 2500)
     }
 
-    return <section style={{'background': '#f2f2f2'}} className="h-full">
+    return <section style={{'background': '#f2f2f2'}}>
         
-        <header>
-            <div class="cabecalho">
-                <h1>Ecommerce App</h1>
-                <div class="btns-home">
-                    <a><button class="button-f">Login</button></a>
-                    <a><button class="button-f">Cadastrar</button></a>
-                </div>
-            </div>
-            <nav class="nav-links">
-                <ul>
-                    <li class="ativar">Livros
-                        <div class="sub-menu">
-                            <ul>
-                                <li>Fantasia
-                                <div class="sub-menu">
-                                    <ul>
-                                        <li>Fantasia</li>
-                                        <li>Ficção Cientifica</li>
-                                        <li>Romance</li>
-                                        <li>Filosofia</li>
-                                        <li>História</li>
-                                    </ul>
-                                </div>
-                                </li>
-                                <li>Ficção Cientifica</li>
-                                <li>Romance</li>
-                                <li>Filosofia</li>
-                                <li>História</li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li>Sobre nós</li>
-                    <li>Contato</li>
-                </ul>
-            </nav>
-        </header>
-
         <section className='products'>
             <div className='flex justify-spacer filtro'>
                 <p>Filtro</p>
@@ -115,7 +93,7 @@ export const HomePage = () => {
 
             <hr />
 
-            <div className="products-grid">
+            <div className="products-grid justify-spacer">
                 { showSpinner ? <SpinnerComponent /> : getProdutosHtmlTemplate() }
             </div>
         </section>

@@ -1,7 +1,7 @@
 import './Login.css'
 import { LoginService } from './Login.service'
 import { useState, use } from 'react';
-import { IconHeader } from '../components/IconHeader';
+import { IconHeader } from '../components/IconHeader/IconHeader';
 import { ModalComponent } from '../components/ModalComponent/Modal.Component';
 import { SpinnerComponent } from '../components/SpinnerComponent/Spinner';
 
@@ -17,7 +17,7 @@ export const LoginPage = () => {
         responseMessage: '',
         iconAlert: '',
         spinnerActive: false
-    });
+    })
 
     const submitLogin = (e) => {
         e.preventDefault()
@@ -36,7 +36,6 @@ export const LoginPage = () => {
                 login: uiInterface.nome,
                 senha: uiInterface.senha
             }).then(response => {
-
                 setUiInterface({
                     ...uiInterface,
                     iconAlert: require('../../assets/check.png'),
@@ -45,7 +44,6 @@ export const LoginPage = () => {
                 })
 
                 document.getElementById("loginForm").submit() //Submit form
-
             }).catch((erro)=> {
                 setUiInterface({
                     ...uiInterface,

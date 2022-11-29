@@ -3,6 +3,7 @@ import './App.css';
 import { LoginPage } from './login/Login';
 import { Route } from 'react-router-dom'
 import { HomePage } from './homepage/HomePage';
+import { MainHeader } from './components/MainHeader/MainHeader';
 
 
 function App() {
@@ -12,9 +13,12 @@ function App() {
       <Route path={'/login'}>
         <LoginPage />
       </Route>
-      <Route path={'/homepage'}>
-        <HomePage />
-      </Route>
+      <main>
+        <MainHeader />
+        <Route path={'/homepage'}>
+          <HomePage />
+        </Route>
+      </main>
     </div>
   );
 }
