@@ -1,4 +1,5 @@
 import './MainHeader.css'
+import { Link } from 'react-router-dom'
 
 export const MainHeader = () => {
 
@@ -18,8 +19,8 @@ export const MainHeader = () => {
                                 <li>Fantasia
                                 <div class="sub-menu">
                                     <ul>
-                                        <li>Fantasia</li>
-                                        <li>Ficção Cientifica</li>
+                                        <li><Link to="fantasia">Fantasia</Link></li>
+                                        <li><Link to="ficcaoCientifica">Fantasia</Link></li>
                                         <li>Romance</li>
                                         <li>Filosofia</li>
                                         <li>História</li>

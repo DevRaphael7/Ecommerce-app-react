@@ -82,6 +82,9 @@ export const HomePage = () => {
                 setProdutosFilter(sortingService.sortingBubbleSort(getProdutosFilter, true))
             } else if (e.target.value === "2") {
                 setProdutosFilter(sortingService.sortingBubbleSort(getProdutosFilter))
+            } else if (e.target.value === "3") {
+                sortingService.setKey("nome")
+                setProdutosFilter(sortingService.sortingString(getProdutosFilter, true))
             }
 
             setShowSpinner(false)
