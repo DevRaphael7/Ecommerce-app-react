@@ -1,5 +1,6 @@
 import './MainHeader.css'
 import { Link } from 'react-router-dom'
+import { rotas } from './rotas'
 
 export const MainHeader = () => {
 
@@ -16,21 +17,7 @@ export const MainHeader = () => {
                     <li class="ativar">Livros
                         <div class="sub-menu">
                             <ul>
-                                <li>Fantasia
-                                <div class="sub-menu">
-                                    <ul>
-                                        <li><Link to="fantasia">Fantasia</Link></li>
-                                        <li><Link to="ficcaoCientifica">Fantasia</Link></li>
-                                        <li>Romance</li>
-                                        <li>Filosofia</li>
-                                        <li>História</li>
-                                    </ul>
-                                </div>
-                                </li>
-                                <li>Ficção Cientifica</li>
-                                <li>Romance</li>
-                                <li>Filosofia</li>
-                                <li>História</li>
+                                { rotas.map(value => <Link to={'/detail/' + value.type}><li>{value.name}</li></Link>) }
                             </ul>
                         </div>
                     </li>

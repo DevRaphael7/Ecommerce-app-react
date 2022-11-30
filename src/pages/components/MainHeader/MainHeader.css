@@ -62,8 +62,7 @@ header{
     padding: 5px;
 }
 .nav-links ul li:hover {
-    background: var(--bg-header-1);;
-    text-decoration: none;
+    background: var(--bg-header-1);
     border-bottom: 1px solid #fff;
 }
 .nav-links ul .fas{padding-left: 5px;}

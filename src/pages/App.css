@@ -6,6 +6,10 @@
   display: flex;
 }
 
+a{
+  text-decoration:none;  
+}
+
 .justify-center{
   justify-content: center;
 }
