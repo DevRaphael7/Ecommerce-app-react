@@ -4,6 +4,7 @@ import { SpinnerComponent } from '../components/SpinnerComponent/Spinner';
 import { useSelector } from "react-redux";
 
 import './HomePage.css'
+import { ProductContainer } from '../components/ProductContainer/ProductContainer';
 
 export const HomePage = () => {
 
@@ -15,20 +16,7 @@ export const HomePage = () => {
     let [getListCategoryFilter, setListCategoryFilter] = useState([])
 
     const getProdutosHtmlTemplate = () => {
-        return getProdutosFilter.map((value, index) => (
-            <div class="product-container" key={index + 1}>
-                <img src={value.cover} />
-                <div className='info'>
-                    <h4>{ value.nome }</h4>
-                    <br />
-                    <p>{ value.preco.toFixed(2) } R$</p>
-                    <br />
-                    <button className='btn-blue'>
-                        Ver mais
-                    </button>
-                </div>
-            </div>
-        ))
+        return getProdutosFilter.map((value, index) => (<ProductContainer value={value} key={index}/>))
     }
 
     const filtrar = (e) => {

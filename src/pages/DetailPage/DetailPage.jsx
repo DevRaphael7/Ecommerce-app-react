@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom"
+import { ProductContainer } from "../components/ProductContainer/ProductContainer";
 
 export const DetailPage = () => {
 
@@ -7,9 +8,14 @@ export const DetailPage = () => {
 
     const getProduct = (useSelector((state) => state.product)).filter(value => value.type == params.type);
 
-    console.log(getProduct)
+    const getContainerProduct = () => {
+        return getProduct.map((value, index) => <ProductContainer value={value} index={index} />)
+    }
 
-    return <div>
-        <h1>Welcome user!</h1>
+    return <div style={{'padding': '10px'}}>
+
+        <div className="products-grid justify-spacer w-full">
+            { getContainerProduct() }
+        </div>
     </div>
 }
